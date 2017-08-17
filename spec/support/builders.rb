@@ -565,15 +565,15 @@ module Spec
 
           # exit 1 unless with_config("simple")
 
-          extension_name = "very_simple_binary_c"
+          extension_name = "#{name}_c"
           dir_config extension_name
           create_makefile extension_name
         RUBY
-        write "ext/very_simple_binary.c", <<-C
+        write "ext/#{name}.c", <<-C
           #include "ruby.h"
 
-          void Init_very_simple_binary_c() {
-            rb_define_module("VerySimpleBinaryInC");
+          void Init_#{name}_c() {
+            rb_define_module("#{Builders.constantize(name)}_IN_C");
           }
         C
       end
